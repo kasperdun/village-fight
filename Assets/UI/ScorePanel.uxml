@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="ScoreContainer" style="height: 35px; flex-direction: row; justify-content: center; background-color: rgba(0, 0, 0, 0.48); min-height: initial; max-height: initial;">
+        <ui:Label text="0" display-tooltip-when-elided="true" name="my-score" style="font-size: 26px; color: rgb(0, 166, 14); -unity-text-align: middle-center;" />
+        <ui:Label text=":" display-tooltip-when-elided="true" name="splitter" style="margin-left: 10px; margin-right: 10px; font-size: 26px; color: rgb(255, 255, 255); -unity-text-align: middle-center;" />
+        <ui:Label text="0" display-tooltip-when-elided="true" name="enemy-score" style="font-size: 26px; color: rgb(183, 0, 0); -unity-text-align: middle-center;" />
+    </ui:VisualElement>
+</ui:UXML>

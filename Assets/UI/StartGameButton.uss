@@ -1,0 +1,18 @@
+.start-game-button {
+    left: 25%;
+    right: 25%;
+    top: 25%;
+    bottom: 25%;
+    width: 50%;
+    height: 10%;
+    font-size: 50px;
+    color: rgb(45, 59, 195);
+    -unity-font: resource('Fonts & Materials/LiberationSans');
+    -unity-font-style: bold;
+    background-color: rgb(101, 117, 140);
+}
+
+.start-game-button:hover {
+    background-color: rgb(55, 68, 87);
+    color: rgb(109, 118, 204);
+}

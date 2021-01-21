@@ -1,0 +1,5 @@
+.container {
+    background-color: rgba(200, 57, 57, 255);
+    height: 100%;
+    width: 100%;
+}
