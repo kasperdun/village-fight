@@ -23,14 +23,9 @@ public class BuildingCreator : MonoBehaviour
 
     public void Start()
     {
-        if (PhotonNetwork.LocalPlayer.CustomProperties["Team"].ToString() == "Top")
-        {
-            spawnZoneRenderer = spawnZoneTop.GetComponent<Renderer>();
-        }
-        else
-        {
-            spawnZoneRenderer = spawnZoneBottom.GetComponent<Renderer>();
-        }
+        bool isTopTeam = PhotonNetwork.LocalPlayer.CustomProperties["Team"].ToString() == "Top";
+
+        spawnZoneRenderer = isTopTeam ? spawnZoneTop.GetComponent<Renderer>() : spawnZoneBottom.GetComponent<Renderer>();
     }
 
     public void OnStartDrag()
@@ -47,7 +42,7 @@ public class BuildingCreator : MonoBehaviour
     IEnumerator CreateGhost()
     {
         yield return new WaitForSeconds(0.1f);
-        ghost = Instantiate(mobToCreate, Vector3.zero, Quaternion.identity);
+        ghost = Instantiate(mobToCreate, CalculatePosition(Vector3.zero), Quaternion.identity);
         ghost.IsGhost = true;
     }
 
@@ -56,10 +51,9 @@ public class BuildingCreator : MonoBehaviour
         if (!targetCamera)
             return;
 
-
         if (ghost != null && dragging && !EventSystem.current.IsPointerOverGameObject() && Input.GetMouseButtonUp(0))
         {
-            var position = ghost.transform.position;
+            Vector3 position = ghost.transform.position;
             Destroy(ghost.gameObject);
             ghost = null;
 
@@ -81,13 +75,19 @@ public class BuildingCreator : MonoBehaviour
             RaycastHit hitInfo;
             if (terrain.Raycast(ray, out hitInfo, Mathf.Infinity)) // using infinity for the ray length for example
             {
-                Vector3 pos = hitInfo.point;
-                pos.x = Mathf.Clamp(pos.x, spawnZoneRenderer.bounds.min.x, spawnZoneRenderer.bounds.max.x);
-                pos.z = Mathf.Clamp(pos.z, spawnZoneRenderer.bounds.min.z, spawnZoneRenderer.bounds.max.z);
-                pos.y = 0;
-
-                ghost.transform.position = pos;
+                ghost.transform.position = CalculatePosition(hitInfo.point);
             }
         }
+    }
+
+    private Vector3 CalculatePosition(Vector3 startPosition)
+    {
+        Vector3 resultPosition;
+
+        resultPosition.x = Mathf.Clamp(startPosition.x, spawnZoneRenderer.bounds.min.x, spawnZoneRenderer.bounds.max.x);
+        resultPosition.z = Mathf.Clamp(startPosition.z, spawnZoneRenderer.bounds.min.z, spawnZoneRenderer.bounds.max.z);
+        resultPosition.y = 0;
+
+        return resultPosition;
     }
 }

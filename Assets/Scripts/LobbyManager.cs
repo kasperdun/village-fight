@@ -52,7 +52,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public void CreateRoom()
     {
-        PhotonNetwork.CreateRoom(null, new Photon.Realtime.RoomOptions() { MaxPlayers = 2 });
+        PhotonNetwork.CreateRoom(null, new Photon.Realtime.RoomOptions() { MaxPlayers = 2, BroadcastPropsChangeToAll = false });
     }
 
     public void JoinToRoom()
