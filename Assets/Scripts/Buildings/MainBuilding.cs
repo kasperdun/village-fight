@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class MainBuilding : BuildingBase
 {
-
     protected override void SetLayer()
     {
         gameObject.layer = PhotonNetwork.LocalPlayer.CustomProperties["Team"].ToString() == tag ? GameManager.myTeamLayer : GameManager.enemyTeamLayer;

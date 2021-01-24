@@ -91,7 +91,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
         btnText.text = "Starting";
         
-
         PhotonNetwork.LoadLevel("Game");
 
         yield return new WaitForSeconds(5f);
