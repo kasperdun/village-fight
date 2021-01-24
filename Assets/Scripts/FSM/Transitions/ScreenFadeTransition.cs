@@ -18,7 +18,7 @@ public class ScreenFadeTransition : IStateTransition
     public ScreenFadeTransition(float fadeTime)
     {
         // Set up the fade cover
-        var screenFadePrefab = Resources.Load<Canvas>("ScreenFade");
+        var screenFadePrefab = Resources.Load<Canvas>("Screen Fade");
         canvas = UnityEngine.Object.Instantiate(screenFadePrefab);
         var coverGO = canvas.transform.Find("Cover");
         fade = coverGO.GetComponent<Image>();
